@@ -1,6 +1,11 @@
 # Unity Auto Save
 설정된 시간 간격마다 자동 저장 기능을 Unity에 추가합니다.
 
+### LTS -> [UnityPackage](https://github.com/NK-Studio/Unity-AutoSave/releases) 다운로드
+
+# 추가적인 커스텀 템플릿 제작 방법  
+https://pebble-glider-f8f.notion.site/24ab37ec575f4f5c86947ba2bf8918c3
+
 ### User guide<br>
 프로젝트에 유니티 패키지를 설치합니다.
 
