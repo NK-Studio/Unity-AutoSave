@@ -3,7 +3,7 @@
 
 ### LTS -> [UnityPackage](https://github.com/NK-Studio/Unity-AutoSave/releases) 다운로드
 
-# 추가적인 커스텀 템플릿 제작 방법  
+# 사용 방법  
 https://pebble-glider-f8f.notion.site/24ab37ec575f4f5c86947ba2bf8918c3
 
 ### User guide<br>
