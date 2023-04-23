@@ -1,4 +1,6 @@
+#if UNITY_EDITOR
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
@@ -6,17 +8,10 @@ using UnityEditor;
 using UnityEditor.SceneManagement;
 using UnityEngine;
 
-namespace Tarodev {
-    /// <summary>
-    /// Unity has probably discussed an auto-save feature countless times over the years
-    /// and decided not to implement... so take that information as you'd like. I personally
-    /// like the idea and it's worked well for me during my limited testing. If you find any bugs
-    /// please report them on the repo: https://github.com/Matthew-J-Spencer/Unity-AutoSave
-    /// 
-    /// Love your friendly neighborhood Tarodev
-    /// </summary>
+namespace AutoSaveEditor.Editor {
+    
     [CustomEditor(typeof(AutoSaveConfig))]
-    public class TarodevAutoSave : Editor {
+    public class AutoSaveEditor : UnityEditor.Editor {
         private static AutoSaveConfig _config;
         private static CancellationTokenSource _tokenSource;
         private static Task _task;
@@ -34,11 +29,11 @@ namespace Tarodev {
             while (true) {
                 if (_config != null) return;
 
-                var path = GetConfigPath();
+                string path = GetConfigPath();
 
                 if (path == null) {
                     AssetDatabase.CreateAsset(CreateInstance<AutoSaveConfig>(), $"Assets/{nameof(AutoSaveConfig)}.asset");
-                    Debug.Log("A config file has been created at the root of your project.<b> You can move this anywhere you'd like.</b>");
+                    Debug.Log("프로젝트의 루트에 구성 파일이 생성되었습니다. <b> 원하는 곳으로 이동할 수 있습니다.</b>");
                     continue;
                 }
 
@@ -49,8 +44,8 @@ namespace Tarodev {
         }
 
         private static string GetConfigPath() {
-            var paths = AssetDatabase.FindAssets(nameof(AutoSaveConfig)).Select(AssetDatabase.GUIDToAssetPath).Where(c => c.EndsWith(".asset")).ToList();
-            if (paths.Count > 1) Debug.LogWarning("Multiple auto save config assets found. Delete one.");
+            List<string> paths = AssetDatabase.FindAssets(nameof(AutoSaveConfig)).Select(AssetDatabase.GUIDToAssetPath).Where(c => c.EndsWith(".asset")).ToList();
+            if (paths.Count > 1) Debug.LogWarning("여러 자동 저장 구성 자산이 발견되었습니다. 하나를 삭제합니다.");
             return paths.FirstOrDefault();
         }
 
@@ -69,7 +64,7 @@ namespace Tarodev {
                 if (!UnityEditorInternal.InternalEditorUtility.isApplicationActive) continue;
 
                 EditorSceneManager.SaveOpenScenes();
-                if (_config.Logging) Debug.Log($"Auto-saved at {DateTime.Now:h:mm:ss tt}");
+                if (_config.Logging) Debug.Log($"{DateTime.Now:h:mm:ss tt}에 자동 저장 되었습니다.");
             }
         }
         
@@ -77,14 +72,13 @@ namespace Tarodev {
         public static void ShowConfig() {
             FetchConfig();
 
-            var path = GetConfigPath();
+            string path = GetConfigPath();
             EditorGUIUtility.PingObject(AssetDatabase.LoadAssetAtPath<AutoSaveConfig>(path).GetInstanceID());
         }
 
         public override void OnInspectorGUI() {
             DrawDefaultInspector();
-            EditorGUILayout.Space();
-            EditorGUILayout.HelpBox("You can move this asset where ever you'd like.\nWith ❤, Tarodev.", MessageType.Info);
         }
     }
 }
+#endif

@@ -1,11 +1,12 @@
 # Unity Auto Save
-Add a simple auto save feature to Unity which fires every set interval. 
+설정된 시간 간격마다 자동 저장 기능을 Unity에 추가합니다.
 
 ### User guide<br>
-Put <b>TarodevAutoSave.cs</b> & <b>AutoSaveConfig.cs.cs</b> inside an <b>Editor</b> folder anywhere in your project and it'll generate a configuration file in Assets. You can place this config file anywhere, it won't break.
+프로젝트에 유니티 패키지를 설치합니다.
 
 ### Disclaimer
-Unity could easily implement auto-save functionality, but they haven't for whatever reason. Treat that as a word of warning... It's worked perfectly fine for me without any problems, but I can't guarantee anything.
+Unity는 자동 저장 기능을 쉽게 구현할 수 있었지만 어떤 이유로든 구현하지 못했습니다. 경고의 말로... 아무 문제 없이 완벽하게 작동했지만, 장담할 수는 없습니다.
 
-### Leave a ⭐ if you found it helpful! Consider supporting me on [Patreon](https://www.patreon.com/tarodev)
+### 이 에셋의 원본은 NK Studio가 아닌 tarodev개발자가 제작하였으며 한국어 번역만 NK Studio가 진행했음을 알립니다.
+이 에셋에 대한 후원은 tarodev 개발자에게 해주십시오.(https://www.patreon.com/tarodev)
 
